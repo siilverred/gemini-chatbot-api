@@ -3,18 +3,255 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gemini AI Chatbot</title>
+  <title>Gemini AI • Intelligent Assistant</title>
   <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Background gradient -->
+  <div class="bg-gradient"></div>
+  <div class="bg-mesh"></div>
+
   <div class="container">
-    <h1>Gemini AI Chatbot</h1>
-    <div id="chat-box" class="chat-box"></div>
-    <form id="chat-form">
-      <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
-      <button type="submit">Send</button>
-    </form>
+    <!-- Glass navigation bar -->
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="nav-left">
+          <div class="app-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <rect width="48" height="48" rx="12" fill="url(#iconGradient)"/>
+              <path d="M24 14C22.3 14 21 15.3 21 17V17.8C17.5 18.9 14.8 21.9 14.3 25.5H13C11.3 25.5 10 26.8 10 28.5C10 30.2 11.3 31.5 13 31.5H14.3C14.8 35.1 17.5 38.1 21 39.2V40C21 41.7 22.3 43 24 43C25.7 43 27 41.7 27 40V39.2C30.5 38.1 33.2 35.1 33.7 31.5H35C36.7 31.5 38 30.2 38 28.5C38 26.8 36.7 25.5 35 25.5H33.7C33.2 21.9 30.5 18.9 27 17.8V17C27 15.3 25.7 14 24 14M19.5 23.5C20.3 23.5 21 24.2 21 25C21 25.8 20.3 26.5 19.5 26.5C18.7 26.5 18 25.8 18 25C18 24.2 18.7 23.5 19.5 23.5M28.5 23.5C29.3 23.5 30 24.2 30 25C30 25.8 29.3 26.5 28.5 26.5C27.7 26.5 27 25.8 27 25C27 24.2 27.7 23.5 28.5 23.5M24 36C20.7 36 18 33.3 18 30H30C30 33.3 27.3 36 24 36Z" fill="white"/>
+            </svg>
+          </div>
+          <div class="nav-title">
+            <h1>Gemini AI</h1>
+            <span class="status-indicator">
+              <span class="status-dot"></span>
+              Online
+            </span>
+          </div>
+        </div>
+        
+        <div class="nav-right">
+          <button id="voice-btn" class="toolbar-btn" title="Voice input">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 14C13.66 14 15 12.66 15 11V5C15 3.34 13.66 2 12 2C10.34 2 9 3.34 9 5V11C9 12.66 10.34 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 11C19 14.53 16.39 17.44 13 17.93V22M12 22H14M12 22H10M5 11C5 14.53 7.61 17.44 11 17.93" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          
+          <button id="export-btn" class="toolbar-btn" title="Export chat">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 10L12 15L17 10M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          
+          <button id="theme-toggle" class="toolbar-btn" title="Appearance">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 2V4M12 20V22M4.93 4.93L6.34 6.34M17.66 17.66L19.07 19.07M2 12H4M20 12H22M4.93 19.07L6.34 17.66M17.66 6.34L19.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          
+          <div class="divider"></div>
+          
+          <button id="settings-btn" class="toolbar-btn" title="Settings">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          
+          <button id="clear-chat" class="toolbar-btn danger" title="New conversation">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4V12M12 12L8 8M12 12L16 8M12 12V20M12 20L8 16M12 20L16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main chat area -->
+    <main class="chat-container">
+      <div id="chat-box" class="chat-box">
+        <!-- Welcome screen -->
+        <div class="welcome-screen">
+          <div class="welcome-icon-wrapper">
+            <div class="welcome-icon">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="welcomeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <circle cx="32" cy="32" r="32" fill="url(#welcomeGradient)" opacity="0.1"/>
+                <circle cx="32" cy="32" r="24" fill="url(#welcomeGradient)" opacity="0.2"/>
+                <path d="M32 18C29.8 18 28 19.8 28 22V22.6C23.5 24 20.2 27.8 19.6 32.5H18C15.8 32.5 14 34.3 14 36.5C14 38.7 15.8 40.5 18 40.5H19.6C20.2 45.2 23.5 49 28 50.4V51C28 53.2 29.8 55 32 55C34.2 55 36 53.2 36 51V50.4C40.5 49 43.8 45.2 44.4 40.5H46C48.2 40.5 50 38.7 50 36.5C50 34.3 48.2 32.5 46 32.5H44.4C43.8 27.8 40.5 24 36 22.6V22C36 19.8 34.2 18 32 18M26 30C27.1 30 28 30.9 28 32C28 33.1 27.1 34 26 34C24.9 34 24 33.1 24 32C24 30.9 24.9 30 26 30M38 30C39.1 30 40 30.9 40 32C40 33.1 39.1 34 38 34C36.9 34 36 33.1 36 32C36 30.9 36.9 30 38 30M32 46C27.6 46 24 42.4 24 38H40C40 42.4 36.4 46 32 46Z" fill="url(#welcomeGradient)"/>
+              </svg>
+            </div>
+          </div>
+          <h2>Hello! I'm Gemini</h2>
+          <p>Your intelligent AI assistant, ready to help with anything you need.</p>
+          
+          <div class="capabilities">
+            <div class="capability-card">
+              <div class="capability-icon">💡</div>
+              <h3>Creative Ideas</h3>
+              <p>Brainstorm and explore new concepts</p>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">💻</div>
+              <h3>Code Assistant</h3>
+              <p>Debug, explain, and write code</p>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">📝</div>
+              <h3>Writing Help</h3>
+              <p>Compose, edit, and refine text</p>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">🎓</div>
+              <h3>Learn Anything</h3>
+              <p>Explain complex topics simply</p>
+            </div>
+          </div>
+
+          <div class="quick-prompts">
+            <h4>Try asking:</h4>
+            <div class="prompts-grid">
+              <button class="prompt-chip">Explain quantum computing simply</button>
+              <button class="prompt-chip">Write a Python function for sorting</button>
+              <button class="prompt-chip">Create a morning routine plan</button>
+              <button class="prompt-chip">Help me brainstorm app ideas</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing indicator -->
+      <div id="typing-indicator" class="typing-indicator" style="display: none;">
+        <div class="typing-avatar">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input area -->
+      <div class="input-container">
+        <form id="chat-form">
+          <div class="input-glass">
+            <button type="button" id="attach-btn" class="input-btn">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59723 21.9983 8.005 21.9983C6.41277 21.9983 4.88584 21.3658 3.76 20.24C2.63416 19.1142 2.00166 17.5872 2.00166 15.995C2.00166 14.4028 2.63416 12.8758 3.76 11.75L12.33 3.18C13.0806 2.42944 14.0923 2.00672 15.145 2.00672C16.1977 2.00672 17.2094 2.42944 17.96 3.18C18.7106 3.93056 19.1333 4.94226 19.1333 5.995C19.1333 7.04774 18.7106 8.05944 17.96 8.81L9.38 17.38C8.99 17.77 8.47 18 7.92 18C7.37 18 6.85 17.77 6.46 17.38C6.07 16.99 5.84 16.47 5.84 15.92C5.84 15.37 6.07 14.85 6.46 14.46L14.07 6.85" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <div class="input-wrapper">
+              <textarea id="user-input" placeholder="Message Gemini AI..." rows="1" autocomplete="off" required></textarea>
+            </div>
+            
+            <div class="input-actions">
+              <button type="button" id="emoji-btn" class="input-btn">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                  <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="9" cy="9" r="1" fill="currentColor"/>
+                  <circle cx="15" cy="9" r="1" fill="currentColor"/>
+                </svg>
+              </button>
+              
+              <button type="submit" id="send-btn" class="send-btn">
+                <svg class="send-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <div class="input-footer">
+            <div class="footer-left">
+              <span id="char-count">0</span> / 2000
+            </div>
+            <div class="footer-right">
+              <kbd>⌘</kbd> <kbd>↵</kbd> to send • <kbd>⇧</kbd> <kbd>↵</kbd> for new line
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
   </div>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content glass">
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button class="close-btn" id="close-settings">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="setting-group">
+          <h3>Appearance</h3>
+          <div class="setting-item">
+            <label>Theme</label>
+            <select id="theme-select" class="select-glass">
+              <option value="auto">Auto</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <label>
+              <span>Reduce motion</span>
+              <input type="checkbox" id="reduce-motion" class="toggle-switch">
+            </label>
+          </div>
+        </div>
+        
+        <div class="setting-group">
+          <h3>Chat</h3>
+          <div class="setting-item">
+            <label>
+              <span>Show timestamps</span>
+              <input type="checkbox" id="show-timestamps" class="toggle-switch" checked>
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <span>Sound effects</span>
+              <input type="checkbox" id="sound-effects" class="toggle-switch" checked>
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <span>Auto-scroll</span>
+              <input type="checkbox" id="auto-scroll" class="toggle-switch" checked>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
